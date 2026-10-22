@@ -57,6 +57,11 @@ public class TaskController {
         return ResponseEntity.ok(taskService.markTaskAsComplete(id));
     }
 
+    @GetMapping(value = "/summary", produces = "text/plain")
+    public ResponseEntity<String> summarizeTasks() {
+        return ResponseEntity.ok(taskService.summarizeTasks());
+    }
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleTaskNotFound(NoSuchElementException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
